@@ -1,33 +1,30 @@
-# The following is the order of the links in the header of the website.
+# Site navigation — header menu order.
 #
-# Changing the order here will adjust the order and you can also add additional
-# links. Removing a link prevents it from showing in the header, but does not
-# prevent it from being included in the site.
-#
-# NOTE that only one of the CV options should be selected, the first is for the
-#      Markdown formatted page while the second is generated using JSON.
+# Removing a link hides it from the header; the page stays published.
+# `/expediente/` is added in Phase 4, once that page exists — adding it now would
+# be a dead link and Jekyll builds with warnings.
 
 main:
   - title: "Publications"
     url: /publications/
 
   - title: "Talks"
-    url: /talks/    
+    url: /talks/
 
-  - title: "Teaching"
-    url: /teaching/    
-    
   - title: "Portfolio"
     url: /portfolio/
-        
-  - title: "Blog Posts"
+
+  - title: "Blog"
     url: /year-archive/
-    
+
   - title: "CV"
     url: /cv/
-    
-  # - title: "CV"
-  #   url: /cv-json/
-    
-  - title: "Guide"
-    url: /markdown/
+
+# Kept out of the menu on purpose:
+#
+#   /teaching/   — page and collection exist, but a PhD student with no teaching
+#                   record should not advertise an empty section. Add when there
+#                   is something to show.
+#   /cv-json/    — the built-in structured CV. Available at /cv-json/; see
+#                   docs/plantilla/campos-cv.md for why it cannot represent
+#                   awards, certifications, or grouped education.
