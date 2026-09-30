@@ -37,6 +37,3 @@ main:
 #   /teaching/   — page and collection exist, but a PhD student with no teaching
 #                   record should not advertise an empty section. Add when there
 #                   is something to show.
-#   /cv-json/    — the built-in structured CV. Available at /cv-json/; see
-#                   docs/plantilla/campos-cv.md for why it cannot represent
-#                   awards, certifications, or grouped education.

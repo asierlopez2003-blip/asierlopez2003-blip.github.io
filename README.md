@@ -18,7 +18,7 @@ supported.
 |---|---|
 | `_config.yml` | Site-wide settings, theme, defaults |
 | `_pages/` | Top-level pages (`about.md`, `cv.md`, `expediente.html`, 404, …) |
-| `_data/` | YAML data: `titulos.yml`, `experiencia.yml`, `habilidades.yml`, `congressos.yml`, `navigation.yml`, `cv.json` |
+| `_data/` | YAML data: `titulos.yml`, `experiencia.yml`, `habilidades.yml`, `congressos.yml`, `navigation.yml` |
 | `_publications/`, `_talks/`, `_portfolio/`, `_teaching/` | Jekyll collections, one file per entry |
 | `_posts/` | Blog |
 | `_sass/` | Styles. Theme styles are not modified; custom rules are namespaced |
@@ -33,8 +33,9 @@ belongs here. Degrees, certifications, and awards are grouped in `_data/titulos.
 and rendered by `_pages/expediente.html` with native `<details>` elements — no
 JavaScript, no proficiency levels.
 
-`_data/cv.json` drives the built-in structured CV page at `/cv-json/`. It is left
-unmodified from the template; see the project notes for the fields it cannot represent.
+`/cv/` is the single CV surface, condensed from the same `_data`. There is no
+separate structured-JSON CV page: the template's demo page and its generator
+were removed rather than shipped with placeholder content.
 
 ## Credits
 
