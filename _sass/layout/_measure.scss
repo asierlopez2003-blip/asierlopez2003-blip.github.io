@@ -1,0 +1,35 @@
+/* ==========================================================================
+   READING MEASURE
+   ========================================================================== */
+
+/*
+   The theme stretches `.page__inner-wrap` to the full width of the content
+   column. The column is 10/12 of `#main`, and `#main` only stops growing at
+   the `$x-large` (1280px) breakpoint, so on a wide monitor the text ran the
+   whole width with a line length well past 100 characters and almost no
+   lateral margin — it read as a stretched banner rather than a document.
+
+   Capping the measure and centring it keeps a comfortable line length and
+   leaves real space on both sides. Two details make the override work:
+
+   - The selector repeats `.page `. The theme's own rule is
+     `.page .page__inner-wrap` — two classes — so a bare `.page__inner-wrap`
+     loses on specificity no matter how late it appears in the file.
+   - `float: none` is what makes the auto margins actually centre the column.
+     Susy's `full()` mixin floats the box, and auto margins do not centre a
+     float.
+
+   Below the breakpoint the cap stays inactive, so phones and narrow windows
+   keep running edge to edge, which is what they want.
+*/
+
+$measure-width: 46rem;
+
+@include breakpoint($medium) {
+  .page .page__inner-wrap {
+    float: none;
+    max-width: $measure-width;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
