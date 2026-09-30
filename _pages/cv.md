@@ -9,56 +9,84 @@ redirect_from:
 
 {% include base_path %}
 
+{% assign titulos     = site.data.titulos %}
+{% assign experiencia = site.data.experiencia %}
+{% assign habilidades = site.data.habilidades %}
+{% assign congresos  = site.data.congresos %}
+
+This is the condensed version. The [academic record](/expediente/) is the
+complete one, including supervision, awards and project detail.
+
 Education
 ======
-* Ph.D in Version Control Theory, GitHub University, 2018 (expected)
-* M.S. in Jekyll, GitHub University, 2014
-* B.S. in GitHub, GitHub University, 2012
 
-Work experience
-======
-* Spring 2024: Academic Pages Collaborator
-  * GitHub University
-  * Duties includes: Updates and improvements to template
-  * Supervisor: The Users
+{%- assign educacion = "fisica,internacional" | split: "," %}
+{%- for grupo in titulos %}
+{%- if educacion contains grupo.id %}
+### {{ grupo.name }}
+{%- for e in grupo.entries %}
+* **{{ e.title }}**, {{ e.institution }}{% if e.ended == "present" %} (ongoing){% else %}, {{ e.ended }}{% endif %}
+{%- if e.grade %} — grade {{ e.grade }}{% endif %}
+{%- if e.supervisor %} — supervisor {{ e.supervisor }}{% endif %}{% if e.co_supervisor %} — co-supervisor {{ e.co_supervisor }}{% endif %}
+{%- endfor %}
+{%- endif %}
+{%- endfor %}
 
-* Fall 2015: Research Assistant
-  * GitHub University
-  * Duties included: Merging pull requests
-  * Supervisor: Professor Hub
+Research Experience
+======
 
-* Summer 2015: Research Assistant
-  * GitHub University
-  * Duties included: Tagging issues
-  * Supervisor: Professor Git
-  
-Skills
-======
-* Skill 1
-* Skill 2
-  * Sub-skill 2.1
-  * Sub-skill 2.2
-  * Sub-skill 2.3
-* Skill 3
+{%- for e in experiencia %}
+* **{{ e.role }}**, {{ e.org }}{% if e.location %}, {{ e.location }}{% endif %} ({{ e.started }}–{{ e.ended }}){% if e.supervisor %} — supervisor {{ e.supervisor }}{% endif %}{% if e.co_supervisor %} — co-supervisor {{ e.co_supervisor }}{% endif %}
+{%- endfor %}
 
-Publications
+Certifications
 ======
-  <ul>{% for post in site.publications reversed %}
-    {% include archive-single-cv.html %}
-  {% endfor %}</ul>
-  
-Talks
+
+{%- assign certificados = "computacion,biomedical" | split: "," %}
+{%- for grupo in titulos %}
+{%- if certificados contains grupo.id %}
+### {{ grupo.name }}
+{%- for e in grupo.entries %}
+* {{ e.title }}{% if e.ended == "present" %} (ongoing){% endif %}{% if e.credits %} — {{ e.credits }}{% endif %} — {{ e.institution }}
+{%- endfor %}
+{%- endif %}
+{%- endfor %}
+
+Technical Skills
 ======
-  <ul>{% for post in site.talks reversed %}
-    {% include archive-single-talk-cv.html  %}
-  {% endfor %}</ul>
-  
-Teaching
+
+{%- for h in habilidades %}
+{%- unless h.name == "Languages" %}
+### {{ h.name }}
+
+{% for i in h.items %}{% if i.name %}{{ i.name }}{% else %}{{ i }}{% endif %}{% unless forloop.last %}, {% endunless %}{% endfor %}
+
+{%- endunless %}
+{%- endfor %}
+
+Languages
 ======
-  <ul>{% for post in site.teaching reversed %}
-    {% include archive-single-cv.html %}
-  {% endfor %}</ul>
-  
-Service and leadership
+
+{%- for h in habilidades %}
+{%- if h.name == "Languages" %}
+{% for i in h.items %}* {{ i.name }} — {{ i.level }}
+{% endfor %}
+{%- endif %}
+{%- endfor %}
+
+Conferences &amp; Presentations
 ======
-* Currently signed in to 43 different slack teams
+
+{%- if congresos and congresos.size > 0 %}
+{%- for c in congresos %}
+* {{ c.title }} — {{ c.kind }}, {{ c.event }}, {{ c.location }} ({{ c.date }})
+{%- endfor %}
+{%- else %}
+* No talks recorded yet.
+{%- endif %}
+
+<!--
+  A per-application PDF is not linked here on purpose. Those are generated with
+  RenderCV from `cv/cv.yaml`, which is reconstructed in Phase 5, so each version
+  can be filtered for a specific call instead of being one fixed document.
+-->

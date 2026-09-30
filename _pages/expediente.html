@@ -1,0 +1,167 @@
+---
+layout: default
+title: "Academic Record"
+permalink: /expediente/
+author_profile: true
+---
+
+{% assign titulos     = site.data.titulos %}
+{% assign experiencia = site.data.experiencia %}
+{% assign habilidades = site.data.habilidades %}
+{% assign congresos  = site.data.congresos %}
+
+<p class="exp-lede">
+  This is the complete record: every degree, position, certification and talk, with the
+  overlaps and unfinished items left visible. It is deliberately longer than the
+  <a href="{{ '/cv/' | relative_url }}">CV</a>, which is a filtered document written for a
+  specific application.
+</p>
+
+<h2 id="experience">Research Experience</h2>
+
+{% for e in experiencia %}
+  <details class="exp-item" id="exp-{{ e.id }}">
+    <summary>
+      <span class="exp-item__headline">
+        <span class="exp-item__role">{{ e.role | escape }}</span>
+        <span class="exp-item__org">{{ e.org | escape }}</span>
+      </span>
+      <span class="exp-item__dates">
+        {{ e.started }} &ndash;
+        {%- if e.ended == 'present' %}
+        <span class="exp-badge exp-badge--current">Present</span>
+        {%- else %}
+        {{ e.ended }}
+        {%- endif %}
+      </span>
+    </summary>
+
+    <div class="exp-item__body">
+      {%- if e.group %}
+      <p class="exp-item__line"><span class="exp-item__label">Group</span> {{ e.group | escape }}</p>
+      {%- endif %}
+      {%- if e.location %}
+      <p class="exp-item__line"><span class="exp-item__label">Location</span> {{ e.location | escape }}</p>
+      {%- endif %}
+      {%- if e.supervisor %}
+      <p class="exp-item__line"><span class="exp-item__label">Supervisor</span> {{ e.supervisor | escape }}</p>
+      {%- endif %}
+      {%- if e.co_supervisor %}
+      <p class="exp-item__line"><span class="exp-item__label">Co-supervisor</span> {{ e.co_supervisor | escape }}</p>
+      {%- endif %}
+      {%- if e.award %}
+      <p class="exp-item__line"><span class="exp-item__label">Award</span> {{ e.award | escape }}</p>
+      {%- endif %}
+      {%- if e.highlights %}
+      <ul class="exp-item__points">
+        {%- for h in e.highlights %}
+        <li>{{ h | strip | escape }}</li>
+        {%- endfor %}
+      </ul>
+      {%- endif %}
+      {%- include doc-links.html docs=e.docs %}
+    </div>
+  </details>
+{% endfor %}
+
+<h2 id="titles">Degrees &amp; Certifications</h2>
+
+{% for g in titulos %}
+  <details class="exp-group" open>
+    <summary class="exp-group__summary">
+      <span class="exp-group__name">{{ g.name | escape }}</span>
+      <span class="exp-group__count">{{ g.entries | size }} {{ g.entries | size | pluralize: 'entry, entries' }}</span>
+    </summary>
+
+    <div class="exp-group__body">
+      {%- for entry in g.entries %}
+      <details class="exp-item" id="title-{{ entry.id }}">
+        <summary>
+          <span class="exp-item__headline">
+            <span class="exp-item__role">{{ entry.title | escape }}</span>
+            {%- if entry.institution %}
+            <span class="exp-item__org">{{ entry.institution | escape }}</span>
+            {%- endif %}
+          </span>
+          <span class="exp-item__dates">
+            {%- if entry.kind %}<span class="exp-badge">{{ entry.kind | escape }}</span>{% endif %}
+            {%- if entry.ended == 'present' %}
+            <span class="exp-badge exp-badge--current">Present</span>
+            {%- else %}
+            {{ entry.started }} &ndash; {{ entry.ended }}
+            {%- endif %}
+          </span>
+        </summary>
+
+        <div class="exp-item__body">
+          {%- if entry.detail %}
+          <div class="exp-item__detail">{{ entry.detail | markdownify }}</div>
+          {%- endif %}
+          {%- if entry.field %}
+          <p class="exp-item__line"><span class="exp-item__label">Field</span> {{ entry.field | escape }}</p>
+          {%- endif %}
+          {%- if entry.specialisation %}
+          <p class="exp-item__line"><span class="exp-item__label">Specialisation</span> {{ entry.specialisation | escape }}</p>
+          {%- endif %}
+          {%- if entry.credits %}
+          <p class="exp-item__line"><span class="exp-item__label">Credits</span> {{ entry.credits | escape }}</p>
+          {%- endif %}
+          {%- if entry.grade %}
+          <p class="exp-item__line"><span class="exp-item__label">Grade</span> {{ entry.grade | escape }}</p>
+          {%- endif %}
+          {%- if entry.supervisor %}
+          <p class="exp-item__line"><span class="exp-item__label">Supervisor</span> {{ entry.supervisor | escape }}</p>
+          {%- endif %}
+          {%- if entry.co_supervisor %}
+          <p class="exp-item__line"><span class="exp-item__label">Co-supervisor</span> {{ entry.co_supervisor | escape }}</p>
+          {%- endif %}
+          {%- if entry.collaborators %}
+          <p class="exp-item__line">
+            <span class="exp-item__label">Collaborators</span>
+            {%- for c in entry.collaborators %} {{ c | escape }}{% unless forloop.last %},{% endunless %}{% endfor %}
+          </p>
+          {%- endif %}
+          {%- include doc-links.html docs=entry.docs %}
+        </div>
+      </details>
+      {%- endfor %}
+    </div>
+  </details>
+{% endfor %}
+
+<h2 id="skills">Skills</h2>
+
+<div class="exp-skills">
+  {%- for h in habilidades %}
+  <div class="exp-skills__group">
+    <h3 class="exp-skills__name">{{ h.name | escape }}</h3>
+    <ul class="exp-skills__list">
+      {%- for i in h.items %}
+      <li>
+        {%- if i.name -%}
+        {{ i.name | escape }} <span class="exp-skills__level">{{ i.level | escape }}</span>
+        {%- else -%}
+        {{ i | escape }}
+        {%- endif -%}
+      </li>
+      {%- endfor %}
+    </ul>
+  </div>
+  {%- endfor %}
+</div>
+
+<h2 id="presentations">Talks &amp; Presentations</h2>
+
+{% if congresos and congresos.size > 0 %}
+<ul class="exp-talks">
+  {%- for c in congresos %}
+  <li class="exp-talks__item">
+    <span class="exp-talks__title">{{ c.title | escape }}</span>
+    <span class="exp-talks__where">{{ c.event | escape }}, {{ c.location | escape }} &middot; {{ c.date }}</span>
+    <span class="exp-badge">{{ c.kind | escape }}</span>
+  </li>
+  {%- endfor %}
+</ul>
+{% else %}
+<p class="exp-empty">No talks recorded yet.</p>
+{% endif %}

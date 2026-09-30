@@ -1,0 +1,329 @@
+/* ==========================================================================
+   Academic Record — custom page (/expediente/)
+   ==========================================================================
+
+   Scoped entirely under .exp-* so nothing leaks into the rest of the theme.
+   Colours come from the theme's CSS custom properties, so light and dark
+   both work without a second stylesheet.
+
+   Layout only. No JavaScript: the disclosure behaviour is native <details>.
+
+/* ---------- Disclosure reset ------------------------------------------------ */
+
+.exp-item > summary,
+.exp-group > summary {
+  list-style: none;
+  cursor: pointer;
+}
+
+.exp-item > summary::-webkit-details-marker,
+.exp-group > summary::-webkit-details-marker {
+  display: none;
+}
+
+.exp-item > summary::marker,
+.exp-group > summary::marker {
+  content: "";
+}
+
+/* ---------- Timeline item --------------------------------------------------- */
+
+.exp-item {
+  border-left: 2px solid var(--global-border-color);
+  margin: 0 0 0 0.5rem;
+  padding: 0 0 0 1rem;
+}
+
+.exp-item > summary {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.25rem 1rem;
+  padding: 0.5rem 0.6rem;
+  margin-left: -1.6rem;
+  border-radius: 3px;
+  position: relative;
+  transition: background-color 0.15s ease-in-out;
+}
+
+/* Node on the timeline rule. */
+.exp-item > summary::before {
+  content: "";
+  position: absolute;
+  left: -0.5rem;
+  top: 0.85rem;
+  width: 0.55rem;
+  height: 0.55rem;
+  border-radius: 50%;
+  background-color: var(--global-bg-color);
+  border: 2px solid var(--global-border-color);
+}
+
+.exp-item[open] > summary::before {
+  background-color: var(--global-link-color);
+  border-color: var(--global-link-color);
+}
+
+.exp-item > summary:hover {
+  background-color: var(--global-code-background-color);
+}
+
+/* +/- affordance, right aligned. */
+.exp-item > summary::after {
+  content: "+";
+  margin-left: auto;
+  padding: 0 0.3rem;
+  color: var(--global-text-color-light);
+  font-family: $monospace;
+  font-size: $type-size-5;
+  line-height: 1;
+}
+
+.exp-item[open] > summary::after {
+  content: "\2212";
+}
+
+.exp-item__headline {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.1rem 0.5rem;
+  min-width: 0;
+}
+
+.exp-item__role {
+  font-weight: bold;
+}
+
+.exp-item__org {
+  color: var(--global-text-color-light);
+  font-size: $type-size-6;
+}
+
+.exp-item__dates {
+  color: var(--global-text-color-light);
+  font-size: $type-size-6;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.exp-item__body {
+  padding: 0.25rem 0 0.9rem 0.4rem;
+  font-size: $type-size-5;
+}
+
+.exp-item__line {
+  margin: 0 0 0.2rem 0;
+}
+
+.exp-item__label {
+  display: inline-block;
+  min-width: 6.5rem;
+  color: var(--global-text-color-light);
+  font-size: $type-size-7;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.exp-item__points {
+  margin: 0.5rem 0 0 0;
+  padding-left: 1.1rem;
+
+  li {
+    margin-bottom: 0.3rem;
+  }
+}
+
+.exp-item__detail {
+  margin: 0 0 0.5rem 0;
+
+  > p {
+    margin-bottom: 0.4rem;
+  }
+
+  em {
+    color: var(--global-text-color-light);
+  }
+}
+
+/* ---------- Group wrapper (open by default) --------------------------------- */
+
+.exp-group {
+  margin-bottom: 1.2rem;
+}
+
+.exp-group__summary {
+  display: flex;
+  align-items: baseline;
+  gap: 0.75rem;
+  padding: 0.35rem 0;
+  border-bottom: 1px solid var(--global-border-color);
+}
+
+.exp-group__summary::after {
+  content: "";
+  margin-left: auto;
+}
+
+.exp-group[open] > .exp-group__summary::after {
+  content: "";
+}
+
+.exp-group__name {
+  font-size: $type-size-4;
+  font-weight: bold;
+}
+
+.exp-group__count {
+  color: var(--global-text-color-light);
+  font-size: $type-size-7;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.exp-group__body {
+  padding-left: 0.25rem;
+}
+
+/* ---------- Badges ---------------------------------------------------------- */
+
+.exp-badge {
+  display: inline-block;
+  margin-left: 0.4rem;
+  padding: 0 0.4rem;
+  border: 1px solid var(--global-border-color);
+  border-radius: 2em;
+  color: var(--global-text-color-light);
+  font-size: $type-size-7;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  white-space: nowrap;
+  vertical-align: baseline;
+}
+
+.exp-badge--current {
+  border-color: var(--global-link-color);
+  color: var(--global-link-color);
+}
+
+/* ---------- Skills ---------------------------------------------------------- */
+
+.exp-skills {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+  gap: 1.2rem 2rem;
+}
+
+.exp-skills__name {
+  margin: 0 0 0.3rem 0;
+  font-size: $type-size-6;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--global-text-color-light);
+  border-bottom: 1px solid var(--global-border-color);
+}
+
+.exp-skills__list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: $type-size-5;
+
+  li {
+    margin-bottom: 0.15rem;
+  }
+}
+
+.exp-skills__level {
+  color: var(--global-text-color-light);
+  font-size: $type-size-7;
+}
+
+/* ---------- Talks ----------------------------------------------------------- */
+
+.exp-talks {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.exp-talks__item {
+  margin-bottom: 0.7rem;
+  padding-bottom: 0.7rem;
+  border-bottom: 1px solid var(--global-border-color);
+  font-size: $type-size-5;
+}
+
+.exp-talks__title {
+  display: block;
+  font-weight: bold;
+}
+
+.exp-talks__where {
+  display: block;
+  color: var(--global-text-color-light);
+  font-size: $type-size-6;
+}
+
+/* ---------- Misc ------------------------------------------------------------ */
+
+.exp-lede {
+  color: var(--global-text-color-light);
+  font-size: $type-size-5;
+}
+
+.exp-empty {
+  color: var(--global-text-color-light);
+  font-style: italic;
+}
+
+/* ---------- Responsive ------------------------------------------------------ */
+
+@media (max-width: $small) {
+  .exp-item {
+    margin-left: 0.25rem;
+    padding-left: 0.75rem;
+  }
+
+  .exp-item > summary {
+    margin-left: -1.35rem;
+  }
+
+  .exp-item > summary::after {
+    content: none;
+  }
+
+  .exp-item__label {
+    min-width: 0;
+    display: block;
+  }
+
+  .exp-skills {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ---------- Print ----------------------------------------------------------- */
+
+@media print {
+  .exp-item,
+  .exp-group,
+  .exp-talks__item {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  .exp-item > summary::after,
+  .exp-group__summary::after {
+    content: none;
+  }
+
+  .exp-item > summary {
+    background: none !important;
+  }
+
+  .exp-badge {
+    border-color: #666;
+    color: #444;
+  }
+}

@@ -1,10 +1,22 @@
 # Site navigation — header menu order.
 #
 # Removing a link hides it from the header; the page stays published.
-# `/expediente/` is added in Phase 4, once that page exists — adding it now would
-# be a dead link and Jekyll builds with warnings.
+#
+# `/expediente/` goes first: it is the complete record and the reason the site
+# exists, while `/cv/` is the filtered document built from it. The slug stays
+# Spanish; the label is English per the site-language rule.
+#
+# `/documents/` follows immediately because the PDFs are the most concrete evidence
+# on the site, and the two belong together: every document is reachable from the
+# record entry it belongs to, and this page is the index of all of them.
 
 main:
+  - title: "Academic Record"
+    url: /expediente/
+
+  - title: "Documents"
+    url: /documents/
+
   - title: "Publications"
     url: /publications/
 

@@ -1,0 +1,43 @@
+# Skills, as flat lists.
+#
+# Rendered by `_pages/expediente.html` (Phase 4).
+#
+# No proficiency field, by decision (ADR-006). The source CV deliberately does not
+# grade skills, and inventing "advanced" or "intermediate" labels on a public page
+# would be a claim the user has not made. Languages keep their real levels, because
+# the CV records those levels and they are verifiable.
+#
+# An item is either a plain string or a `{name, level}` map. `expediente.html` handles
+# both, so adding a level to a skill later needs no change to the page.
+#
+# The CV splits technical skills across eight headings. Two groups are used here
+# instead of eight, because the split was an artifact of a two-column layout that a
+# web page does not have.
+
+- id: programming
+  name: Programming & Operating Systems
+  items:
+    - C++
+    - Python
+    - Linux / Ubuntu
+    - MATLAB / R
+
+- id: herramientas
+  name: Scientific Tools & Software
+  items:
+    - ROOT / PyROOT
+    - Geant4 / GATE
+    - LaTeX
+    - Git
+
+- id: languages
+  name: Languages
+  items:
+    - name: English
+      level: B2 — Cambridge
+    - name: Spanish
+      level: Native
+    - name: Basque
+      level: Native
+    - name: Italian
+      level: B1

@@ -1,0 +1,184 @@
+/* ==========================================================================
+   Documents — document index (/documents/) and inline document links
+   ==========================================================================
+
+   Two related surfaces share this file:
+
+     .doc-links   the compact list rendered inside a collapsed record on
+                  /expediente/, from _includes/doc-links.html
+     .doc-list    the full entries with summaries on /documents/
+
+   Colours come from the theme's CSS custom properties, so light and dark both
+   work without a second stylesheet. Scoped under .doc-* so nothing leaks.
+
+   Layout only. No JavaScript: these are plain lists of links.
+
+/* ---------- Inline links, inside a record ---------------------------------- */
+
+.doc-links {
+  margin: 0.8rem 0 0 0;
+  padding: 0;
+  list-style: none;
+  border-top: 1px solid var(--global-border-color);
+  padding-top: 0.7rem;
+}
+
+.doc-links__item + .doc-links__item {
+  margin-top: 0.6rem;
+}
+
+.doc-links__link {
+  display: inline-block;
+  line-height: 1.35;
+}
+
+.doc-links__title {
+  border-bottom: 0; /* the link colour is enough; the theme underlines its own links */
+}
+
+.doc-links__badge {
+  display: inline-block;
+  margin-left: 0.4rem;
+  padding: 0 0.4rem;
+  border: 1px solid var(--global-border-color);
+  border-radius: 2em;
+  color: var(--global-text-color-light);
+  font-size: $type-size-7;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  white-space: nowrap;
+  vertical-align: baseline;
+}
+
+.doc-links__meta {
+  display: block;
+  color: var(--global-text-color-light);
+  font-size: $type-size-7;
+}
+
+/* Same role as .doc-list__ids on /documents/, in the compact block. */
+.doc-links__ids {
+  display: block;
+  color: var(--global-text-color-light);
+  font-size: $type-size-7;
+}
+
+/* ---------- Full entries, on /documents/ ----------------------------------- */
+
+.doc-note {
+  max-width: 40rem;
+  color: var(--global-text-color-light);
+  font-size: $type-size-6;
+  border-left: 2px solid var(--global-border-color);
+  padding-left: 0.9rem;
+}
+
+.doc-note--foot {
+  margin-top: 2.5rem;
+  font-style: italic;
+}
+
+.doc-list {
+  margin: 1.5rem 0 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.doc-list__item + .doc-list__item {
+  margin-top: 2rem;
+  border-top: 1px solid var(--global-border-color);
+  padding-top: 1.6rem;
+}
+
+.doc-list__heading {
+  margin: 0 0 0.4rem 0;
+  font-size: $type-size-4;
+  line-height: 1.3;
+}
+
+.doc-list__link {
+  border-bottom: 0;
+}
+
+.doc-list__meta {
+  margin: 0 0 0.7rem 0;
+  color: var(--global-text-color-light);
+  font-size: $type-size-7;
+}
+
+.doc-badge {
+  display: inline-block;
+  padding: 0 0.45rem;
+  border: 1px solid var(--global-border-color);
+  border-radius: 2em;
+  color: var(--global-text-color-light);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  white-space: nowrap;
+  vertical-align: baseline;
+}
+
+.doc-list__year {
+  margin: 0 0.5rem;
+}
+
+.doc-list__summary {
+  max-width: 42rem;
+  margin: 0 0 0.6rem 0;
+}
+
+/* Persistent identifiers. A DOI is a citation, not a call to action: it belongs in
+   the reference block with the extent, not competing with the download link, so it
+   is set at caption size in the muted colour and underlined only on hover. */
+.doc-list__ids {
+  margin: 0 0 0.5rem 0;
+  color: var(--global-text-color-light);
+  font-size: $type-size-7;
+}
+
+.doc-doi {
+  font-variant-numeric: tabular-nums;
+  border-bottom: none;
+}
+
+.doc-list__related {
+  margin: 0;
+  color: var(--global-text-color-light);
+  font-size: $type-size-7;
+}
+
+/* A link that is only a cross-reference, wrapped inside a sentence, should not
+   look like a heading-sized jump. Keep the theme's underline here. */
+.doc-list__related a {
+  border-bottom: 1px dotted var(--global-border-color);
+}
+
+/* ---------- Responsive ------------------------------------------------------ */
+
+@media screen and (max-width: $small) {
+  .doc-links__badge {
+    display: block;
+    margin: 0.15rem 0 0 0;
+    width: fit-content;
+  }
+
+  .doc-list__meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+  }
+
+  .doc-list__year {
+    margin: 0 0.4rem 0 0;
+  }
+}
+
+/* ---------- Print ------------------------------------------------------------ */
+
+@media print {
+  .doc-list__link::after {
+    content: " (" attr(href) ")";
+    font-size: $type-size-7;
+    word-break: break-all;
+  }
+}

@@ -1,0 +1,79 @@
+---
+layout: default
+title: "Documents"
+permalink: /documents/
+author_profile: true
+---
+
+{%- assign titulos = site.data.titulos -%}
+{%- assign experiencia = site.data.experiencia -%}
+{%- assign documentos = site.data.documentos -%}
+
+<p class="exp-lede">
+  The full written output of my degree projects and research placements, published as
+  PDFs. Each entry below is a public file hosted with this site — there is nothing to
+  request and no access restriction.
+</p>
+
+<p class="doc-note">
+  These PDFs are not tagged for accessibility, so they carry no reliable text layer for
+  a screen reader or a reflowable text view. That is a property of how they were typeset
+  upstream, not something that can be patched afterwards. What is offered instead is the
+  summary below each title, which is the same text as the abstract in the document, and
+  every document states its own page count and file size up front so you can decide
+  before downloading.
+</p>
+
+{% if documentos and documentos.size > 0 %}
+<ul class="doc-list">
+  {%- for doc in documentos %}
+  <li class="doc-list__item" id="doc-{{ doc.id }}">
+    <h3 class="doc-list__heading">
+      <a class="doc-list__link" href="{{ doc.file | prepend: '/' | relative_url }}">{{ doc.title | escape }}</a>
+    </h3>
+    <p class="doc-list__meta">
+      <span class="doc-badge">{{ doc.kind | escape }}</span>
+      <span class="doc-list__year">{{ doc.year }}</span>
+      <span class="doc-list__extent">{{ doc.pages }} pages &middot; {{ doc.size | escape }} &middot; written in {{ doc.lang | upcase }}</span>
+    </p>
+    {%- if doc.doi or doc.record_url %}
+    <p class="doc-list__ids">
+      {%- if doc.doi -%}
+      <a class="doc-doi" href="{{ doc.doi }}">DOI {{ doc.doi | remove: 'https://doi.org/' }}</a>
+      {%- endif -%}
+      {%- if doc.doi and doc.record_url %} &middot; {% endif -%}
+      {%- if doc.record_url -%}
+      <a class="doc-list__record" href="{{ doc.record_url }}">CERN Document Server record</a>
+      {%- endif -%}
+    </p>
+    {%- endif %}
+    {%- if doc.summary %}
+    <p class="doc-list__summary">{{ doc.summary | strip_newlines | strip | escape }}</p>
+    {%- endif %}
+
+    {%- assign related_count = 0 -%}
+    {%- for g in titulos -%}
+      {%- for entry in g.entries -%}
+        {%- if entry.docs contains doc.id -%}{%- assign related_count = related_count | plus: 1 -%}{%- endif -%}
+      {%- endfor -%}
+    {%- endfor -%}
+    {%- for e in experiencia -%}
+      {%- if e.docs contains doc.id -%}{%- assign related_count = related_count | plus: 1 -%}{%- endif -%}
+    {%- endfor -%}
+
+    {%- if related_count > 0 %}
+    <p class="doc-list__related">
+      In the <a href="{{ '/expediente/' | relative_url }}">academic record</a> this appears under{% assign rel_sep = ' ' %}{% for g in titulos %}{% for entry in g.entries %}{% if entry.docs contains doc.id %}{{ rel_sep }}<a href="{{ '/expediente/' | relative_url }}#title-{{ entry.id }}">{{ entry.title | escape }}</a>{% assign rel_sep = ', ' %}{% endif %}{% endfor %}{% endfor %}{% for e in experiencia %}{% if e.docs contains doc.id %}{{ rel_sep }}<a href="{{ '/expediente/' | relative_url }}#exp-{{ e.id }}">{{ e.role | escape }}, {{ e.org | escape }}</a>{% assign rel_sep = ', ' %}{% endif %}{% endfor %}</p>
+    {%- endif %}
+  </li>
+  {%- endfor %}
+</ul>
+{% else %}
+<p class="exp-empty">No documents published yet.</p>
+{% endif %}
+
+<p class="doc-note doc-note--foot">
+  The list above is not maintained by hand. It is generated from the files on disk by
+  <code>scripts/scan_documents.py</code>, so the page counts and file sizes cannot drift
+  away from the documents actually being served.
+</p>

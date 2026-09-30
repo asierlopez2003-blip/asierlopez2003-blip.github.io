@@ -5,8 +5,9 @@ _site/
 # Ignore the directory for local files during development
 local/
 
-# Ignore the Gemfile that is generated
-Gemfile.lock
+# Gemfile.lock is intentionally NOT ignored. `bundler-cache: true` in the Pages
+# workflow needs it, and pinning the `github-pages` gem is what keeps the remote
+# Jekyll version identical to the local one.
 
 # Ignore files created by npm
 node_modules

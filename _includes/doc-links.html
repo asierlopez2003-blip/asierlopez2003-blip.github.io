@@ -1,0 +1,47 @@
+{%- comment -%}
+Renders the public documents attached to a record through its `docs:` list.
+
+Params:
+  docs — array of ids, resolved against `_data/documentos.yml`
+  show — "compact" (title, kind, extent, language): the default, used inside a
+          collapsed record on `/expediente/`
+        "full"    (adds the summary): used on `/documents/`
+
+Dependency: this include silently skips a `docs:` id that has no matching entry,
+because the alternative is a link to nowhere on a public page. That is safe only
+because `scripts/scan_documents.py --check` fails the build on any unresolved
+`docs:` id. Run it before publishing, not after.
+{%- endcomment -%}
+
+{%- if include.docs and include.docs.size > 0 -%}
+  <ul class="doc-links{% if include.show == 'full' %} doc-links--full{% endif %}">
+    {%- for doc_id in include.docs -%}
+      {%- assign doc = site.data.documentos | where: "id", doc_id | first -%}
+      {%- if doc %}
+    <li class="doc-links__item">
+      <a class="doc-links__link" href="{{ doc.file | prepend: '/' | relative_url }}">
+        <span class="doc-links__title">{{ doc.title | escape }}</span>
+        <span class="doc-links__badge">{{ doc.kind | escape }}</span>
+      </a>
+      <span class="doc-links__meta">
+        {{ doc.pages }} pages &middot; {{ doc.size | escape }} &middot; in {{ doc.lang | upcase }}
+      </span>
+      {%- if doc.doi or doc.record_url %}
+      <span class="doc-links__ids">
+        {%- if doc.doi -%}
+        <a class="doc-doi" href="{{ doc.doi }}">DOI {{ doc.doi | remove: 'https://doi.org/' }}</a>
+        {%- endif -%}
+        {%- if doc.doi and doc.record_url %} &middot; {% endif -%}
+        {%- if doc.record_url -%}
+        <a href="{{ doc.record_url }}">record</a>
+        {%- endif -%}
+      </span>
+      {%- endif %}
+      {%- if include.show == 'full' and doc.summary %}
+      <p class="doc-links__summary">{{ doc.summary | strip_newlines | strip | escape }}</p>
+      {%- endif %}
+    </li>
+      {%- endif -%}
+    {%- endfor %}
+  </ul>
+{%- endif -%}

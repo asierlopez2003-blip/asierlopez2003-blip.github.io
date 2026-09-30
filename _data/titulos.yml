@@ -1,0 +1,118 @@
+# Degrees, diplomas and certifications, grouped by domain rather than by date.
+#
+# Rendered by `_pages/expediente.html` (Phase 4). Group ids are referenced there, so
+# renaming one means editing the page too.
+#
+# Every entry carries a stable `id`, used by `docs:` to attach public documents from
+# `_data/documentos.yml`, and rendered as the `id=` anchor on `/expediente/`. The id is
+# not display text and is never shown; it exists so a link can point at one specific
+# qualification instead of a group.
+#
+# `ended: present` is a value, not a null. It is what distinguishes a current title
+# from a finished one, and the page renders it as a status marker. No entry uses it
+# at the moment -- the MSc was the last one, finished July 2026 -- but the branch
+# stays: it is the mechanism for any degree still in progress.
+#
+# `supervisor` is a single string, not a list, on purpose: `cv.md` interpolates it
+# directly and Liquid joins list elements with no separator, so a list would print
+# "Sven HeinemeyerJónatan Piedra Gómez" with no error. A second supervisor is
+# `co_supervisor`.
+#
+# Within a group, entries are newest first.
+#
+# Sources: the user's own CV variants under `~/Desktop/PenDrive/asier/`, and the
+# published theses themselves for the fields they settle. Where two sources disagree,
+# the primary document wins and the conflict is noted inline.
+
+- id: fisica
+  name: Physics & Astroparticles
+  entries:
+    - id: msc-particle-physics-cosmology
+      title: "Master's Degree in Particle Physics and Cosmology"
+      institution: University of Cantabria-CSIC-UIMP
+      kind: MSc
+      started: 2025-10
+      # The TFM cover page states "Fecha: July 6, 2026". The degree is finished, so
+      # this is no longer `present`; the cover of the thesis itself is the source.
+      ended: 2026-07
+      detail: >
+        Final degree project: experimental determination of the four triple Higgs
+        couplings in the Real Singlet Extension of the Standard Model at the HL-LHC.
+        Di-Higgs production (hh, hH, HH) via gluon fusion is computed with anyBSM
+        across the benchmark plane compatible with a strong first-order electroweak
+        phase transition. Only the double light Higgs channel turns out to be
+        statistically accessible, so the sensitivity projection concentrates on hh,
+        where a chi-squared fit to kinematic observables constrains the trilinear
+        couplings.
+      grade: "8.5 / 10"
+      supervisor: Sven Heinemeyer
+      co_supervisor: Jónatan Piedra Gómez
+      collaborators:
+        - Johannes Braathen (DESY)
+        - Alain Verduras (DESY)
+      docs:
+        - master-thesis-desy
+
+    - id: bsc-physics
+      title: "Bachelor's Degree in Physics"
+      institution: University of Cantabria
+      kind: BSc
+      started: 2021-09
+      ended: 2025-06
+      specialisation: Fundamental Physics
+      detail: >
+        Final degree project: study of the emission from broad and narrow line regions
+        of active galactic nuclei. A sample of 165 X-ray selected AGN was analysed with
+        principal component spectral decomposition (PyQSOFit), finding that intermediate
+        optical classifications arise from dust extinction rather than from changes in
+        intrinsic emission line fluxes.
+      grade: "9 / 10"
+      supervisor: Diego Herranz Muñoz
+      co_supervisor: Silvia Mateos Ibañez
+      docs:
+        - bachelor-thesis-unican
+
+- id: computacion
+  name: Computing & AI
+  entries:
+    - id: microcredential-ai-python
+      title: "University Microcredential in Artificial Intelligence with Python for Science and Technology"
+      institution: University of Cantabria
+      kind: Microcredential
+      credits: 6 ECTS
+      started: 2025-01
+      ended: 2025-01
+      detail: >
+        Data preprocessing, statistical analysis, data mining and machine learning
+        models, applied to scientific datasets.
+
+- id: biomedical
+  name: Biomedical Applications
+  entries:
+    - id: microcredential-proton-therapy
+      title: "Digital Skills in Proton Therapy: A Clinical Future"
+      institution: University of Cantabria
+      kind: Microcredential
+      started: 2024
+      ended: 2024
+
+- id: internacional
+  name: International
+  entries:
+    - id: erasmus-milan-astrophysics
+      title: "Erasmus+ Mobility Period"
+      institution: University of Milan
+      kind: Erasmus+
+      started: 2023-09
+      ended: 2024-06
+      field: Astrophysics
+      detail: >
+        Astrophysics coursework taught by Giuseppe Lodato, Luigi Guzzo and Claudio
+        Grillo.
+
+# `liderazgo` (Leadership & Management) is not here yet.
+#
+# The leadership record is RadIA — co-founder of a project that won the Santander X
+# Spain Awards 2026 — but it is a role, not a qualification, so it lives in
+# `experiencia.yml` under the `award` field (ADR-002). This group is added when
+# leadership qualifications, if any, are confirmed.

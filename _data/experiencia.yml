@@ -1,0 +1,106 @@
+# Research positions, flat and chronological, newest first.
+#
+# Rendered by `_pages/expediente.html` (Phase 4).
+#
+# Not grouped, unlike `titulos.yml`: the user asked for *titles* to be categorised by
+# domain, and a work history reads better as a timeline.
+#
+# `ended: present` is the mechanism for the current/finished distinction. The overlap
+# between positions is real — CERN runs Jun–Sep 2026 while EUNICE runs from Jun 2026
+# onwards, for example. That overlap is innocuous on a single CV page but conspicuous
+# in a browsable record, so the status marker is an accuracy requirement rather than a
+# design flourish.
+#
+# `highlights` describes the technical work, taken from the user's own CV variants
+# under `~/Desktop/PenDrive/asier/`. Fuller narrative on TFM, JAE and CERN material is
+# deferred to Phase 8.
+#
+# `supervisor` is present where the source CVs record one. It is a single string, not a
+# list: `_pages/cv.md` interpolates it directly, and Liquid joins list elements with no
+# separator, so a list would print two names run together with no error.
+#
+# Every entry carries a stable `id`, used by `docs:` to attach public documents from
+# `_data/documentos.yml` and rendered as the `id=` anchor on `/expediente/`.
+
+- id: summer-student-cern
+  role: Summer Student Programme
+  org: CERN
+  group: Solid State Detector (SSD) group
+  location: Geneva, Switzerland
+  started: 2026-06
+  ended: 2026-09
+  supervisor: "Marcos Fernández García"
+  highlights:
+    - I-V characterisation and Transient Current Technique (TCT) testing of solid-state
+      radiation detectors.
+  docs:
+    - summer-report-cern-nlgad
+
+- id: coordinator-eunice
+  role: "Coordinator & Founder"
+  org: EUNICE AI for Science Club
+  location: Remote — European University
+  started: 2026-06
+  ended: present
+  highlights:
+    - Founded and coordinated a student-led initiative within the EUNICE European
+      University alliance, integrating AI frameworks into scientific research practice.
+
+- id: jae-intro-fellow
+  role: "JAE Intro Fellow"
+  org: "CSIC — Instituto de Física de Cantabria (IFCA)"
+  group: Experimental High Energy Physics group
+  location: Santander, Spain
+  started: 2025-12
+  ended: 2026-06
+  supervisor: "Alicia Calderón Tazón"
+  highlights:
+    - Analysis of double Higgs boson production and calculation of the associated
+      trilinear couplings at the Large Hadron Collator.
+
+- id: researcher-agn-morphology
+  role: "Researcher"
+  org: "Morphological characterization of AGN host galaxies — IFCA"
+  group: Galaxies and AGN group
+  location: Santander, Spain
+  started: 2025-10
+  ended: present
+  supervisor: "Silvia Mateos Ibañez"
+  highlights:
+    - Automated non-parametric morphological measurements (statmorph) on deep imaging
+      from the Gran Telescopio Canarias and the Canada-France-Hawaii Telescope, to test
+      the incidence of galaxy mergers against optical class and obscuration.
+    - "Research line: the evolutionary link between type 1 and type 2 AGN through the
+      signatures of galaxy interaction."
+
+- id: research-intern-cfm
+  role: "Research Intern"
+  org: "CFM — Materials Physics Center"
+  group: Quantum Theory of Materials department
+  location: "San Sebastián, Spain"
+  started: 2025-06
+  ended: 2025-09
+  award: Ikasiker scholarship
+  supervisor: "Ion Errea Lope"
+  highlights:
+    - Investigation of magnons and their quantum properties in the bcc Fe cell.
+
+- id: computational-physics-lead-radia
+  role: "Computational Physics Lead & Co-Founder"
+  org: RadIA Project
+  award: Santander X Spain Awards 2026
+  started: 2025-03
+  ended: present
+  highlights:
+    - High-fidelity Monte Carlo simulations with Geant4-GATE modelling radiation-matter
+      interactions and particle transport in heterogeneous media.
+
+- id: bachelor-intern-humv
+  role: "Bachelor Intern"
+  org: "Hospital Universitario Marqués de Valdecilla (HUMV)"
+  location: Santander, Spain
+  started: 2025-01
+  ended: 2025-06
+  highlights:
+    - "Analysis of Radixact treatments in the RayStation planning system: review and
+      optimisation of 95 treatment plans across different pathologies."
