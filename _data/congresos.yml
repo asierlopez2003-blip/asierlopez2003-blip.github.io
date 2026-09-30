@@ -1,0 +1,31 @@
+# Talks and presentations.
+#
+# Rendered by `_pages/expediente.html` (Phase 4).
+#
+# `title` is the talk, `event` is where it was given. This diverges from the
+# template's `_talks` collection, where the talk title is `name` and the type is
+# `description` — the field name `name` reads too easily as the speaker's name.
+# See `docs/plantilla/campos-cv.md`.
+#
+# `date` is month precision, which is what the site renders. The attendance
+# certificate for this talk gives the exact range — 26–29 May 2026, at the
+# Botanical Garden of the University of Valencia — but the day is not promoted
+# into the key, so the rendering stays uniform with any future entry that only
+# has a month. The certificate is a private source and is deliberately not
+# among the three documents published under `files/`; it is cited here by
+# description rather than by path, because this file is public.
+#
+# `event` follows the certificate, which calls it "the workshop @FlipPhysics".
+# The two source CVs differ ("FlipPhysics Event" / "FlipPhysics workshop"), so
+# the certificate is treated as authoritative.
+#
+# Newest first.
+
+- event: FlipPhysics Workshop
+  title: "Radiotherapy treatments using Artificial Intelligence"
+  kind: Oral presentation
+  location: Valencia, Spain
+  date: 2026-05
+
+# One entry only. The CV records a single talk; nothing is added here to pad the
+# list. Posters, seminars and teaching talks get added when they exist.

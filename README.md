@@ -18,7 +18,7 @@ supported.
 |---|---|
 | `_config.yml` | Site-wide settings, theme, defaults |
 | `_pages/` | Top-level pages (`about.md`, `cv.md`, `expediente.html`, 404, …) |
-| `_data/` | YAML data: `titulos.yml`, `experiencia.yml`, `habilidades.yml`, `congressos.yml`, `navigation.yml` |
+| `_data/` | YAML data: `titulos.yml`, `experiencia.yml`, `habilidades.yml`, `congresos.yml`, `navigation.yml` |
 | `_publications/`, `_talks/`, `_portfolio/`, `_teaching/` | Jekyll collections, one file per entry |
 | `_posts/` | Blog |
 | `_sass/` | Styles. Theme styles are not modified; custom rules are namespaced |
