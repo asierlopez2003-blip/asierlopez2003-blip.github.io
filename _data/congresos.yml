@@ -11,9 +11,13 @@
 # certificate for this talk gives the exact range — 26–29 May 2026, at the
 # Botanical Garden of the University of Valencia — but the day is not promoted
 # into the key, so the rendering stays uniform with any future entry that only
-# has a month. The certificate is a private source and is deliberately not
-# among the three documents published under `files/`; it is cited here by
+# has a month. The certificate itself is a private source and is deliberately
+# not among the documents published under `files/`; the talk is cited here by
 # description rather than by path, because this file is public.
+#
+# `slides` is optional and points at the presentation deck delivered at the
+# event. It is the author's own talk, so publishing it is appropriate; the deck
+# is also registered in `_data/documentos.yml` and listed in `files/README.md`.
 #
 # `event` follows the certificate, which calls it "the workshop @FlipPhysics".
 # The two source CVs differ ("FlipPhysics Event" / "FlipPhysics workshop"), so
@@ -26,6 +30,8 @@
   kind: Oral presentation
   location: Valencia, Spain
   date: 2026-05
+  slides: /files/flipphysics-radiotherapy-ai.pdf
+  talk: /talks/flipphysics-2026-radiotherapy-ai/
 
 # One entry only. The CV records a single talk; nothing is added here to pad the
 # list. Posters, seminars and teaching talks get added when they exist.

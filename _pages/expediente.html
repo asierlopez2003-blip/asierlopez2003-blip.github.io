@@ -159,6 +159,13 @@ author_profile: true
     <span class="exp-talks__title">{{ c.title | escape }}</span>
     <span class="exp-talks__where">{{ c.event | escape }}, {{ c.location | escape }} &middot; {{ c.date }}</span>
     <span class="exp-badge">{{ c.kind | escape }}</span>
+    {%- if c.slides or c.talk %}
+    <span class="exp-talks__links">
+      {%- if c.talk %}<a href="{{ c.talk }}">Talk details</a>{% endif -%}
+      {%- if c.slides and c.talk %} &middot; {% endif -%}
+      {%- if c.slides %}<a href="{{ c.slides }}">Slides (PDF)</a>{% endif -%}
+    </span>
+    {%- endif %}
   </li>
   {%- endfor %}
 </ul>

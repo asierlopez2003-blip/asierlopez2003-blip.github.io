@@ -77,3 +77,14 @@
     the narrow line region than in the broad line region. The results are also consistent
     with the Baldwin effect. Written in Spanish; supervised by Diego Herranz Munoz and Silvia
     Mateos Ibanez.
+
+- id: flipphysics-radiotherapy-ai
+  file: files/flipphysics-radiotherapy-ai.pdf
+  title: "Towards Real-Time High Fidelity Dosimetry"
+  year: 2026
+  kind: slides
+  lang: en
+  pages: 13
+  bytes: 581326
+  size: 568 KB
+  summary: "Oral presentation slides delivered at the FlipPhysics Workshop, Jardin Botanico de la Universidad de Valencia (Valencia, Spain), 26-29 May 2026."

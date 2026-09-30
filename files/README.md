@@ -19,6 +19,7 @@ This is the complete list. Nothing else in this directory is approved.
 | `master-thesis-desy` | `master-thesis-desy.pdf` | MSc thesis, DESY / Universität Hamburg — triple Higgs couplings in the Real Singlet extension | English |
 | `bachelor-thesis-unican` | `bachelor-thesis-unican.pdf` | BSc thesis, Universidad de Cantabria | Spanish |
 | `summer-report-cern-nlgad` | `summer-report-cern-nlgad.pdf` | CERN summer student report, nLGAD | English |
+| `flipphysics-radiotherapy-ai` | `flipphysics-radiotherapy-ai.pdf` | FlipPhysics Workshop oral presentation — Towards Real-Time High Fidelity Dosimetry (13 slides) | English |
 
 The originals are never modified. These are copies whose PDF metadata has been set
 (`/Title`, `/Author`, `/Subject`, `/Keywords`, `/Lang`); the files themselves were not

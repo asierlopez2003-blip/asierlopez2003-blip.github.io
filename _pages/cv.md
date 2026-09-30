@@ -79,7 +79,7 @@ Conferences &amp; Presentations
 
 {%- if congresos and congresos.size > 0 %}
 {%- for c in congresos %}
-* {{ c.title }} — {{ c.kind }}, {{ c.event }}, {{ c.location }} ({{ c.date }})
+* {{ c.title }} — {{ c.kind }}, {{ c.event }}, {{ c.location }} ({{ c.date }}){% if c.slides %} · [slides]({{ c.slides }}){% endif %}
 {%- endfor %}
 {%- else %}
 * No talks recorded yet.
